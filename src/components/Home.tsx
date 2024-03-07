@@ -17,7 +17,7 @@ const Home = () => {
   if (init) {
     return (
       <div
-        className=" min-h-screen  "
+        className=""
       >
         <div className="flex justify-center items-center min-h-screen">
           <h1 className="text-4xl font-bold">Loading...</h1>
@@ -28,7 +28,7 @@ const Home = () => {
 
   return (
     <div
-      className=" min-h-screen  "
+      className=""
     >
       <AllFiles/>
     </div>

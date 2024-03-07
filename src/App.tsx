@@ -1,8 +1,11 @@
 import Home from "./components/Home.tsx";
+import Layout from "./components/Layout.tsx";
 
 const App = () => {
   return (
-    <Home />
+    <Layout>
+      <Home />
+    </Layout>
   )
 };
 

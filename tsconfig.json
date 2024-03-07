@@ -24,7 +24,9 @@
     }
   },
   "exclude": ["node_modules"],
-  "include": ["**/*.ts", "**/*.tsx"],
+  "include": [
+    "**/*.ts", "**/*.tsx"
+  ],
   "ts-node": {
     "transpileOnly": true,
     "transpiler": "ts-node/transpilers/swc",
