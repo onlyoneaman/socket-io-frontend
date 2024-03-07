@@ -2,14 +2,12 @@ import {useEffect, useState} from "react";
 import {DocFile} from "../types/index.js";
 import services from "../services/index.js";
 import FileCard from "@/components/FileCard.js";
-import {Card, CardContent, CardHeader} from "@/components/ui/card.js";
+import {Card, CardHeader} from "@/components/ui/card.js";
+import {useNavigate} from "react-router-dom";
 
-const AllFiles = (
-  {
-    addNewFile,
-  }: any
-) => {
+const AllFiles = () => {
   const [files, setFiles] = useState<DocFile[]>([]);
+  const navigate = useNavigate();
 
   const getFiles = async () => {
     const data = {};
@@ -31,7 +29,7 @@ const AllFiles = (
       >
         <Card
           className="cursor-pointer"
-          onClick={addNewFile}
+          onClick={() => navigate('/add')}
         >
           <CardHeader>
             <h2>Add new file</h2>

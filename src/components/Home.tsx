@@ -2,11 +2,10 @@ import AllFiles from "./AllFiles.tsx";
 import {useEffect, useState} from "react";
 import {helpers} from "../helpers/index.js";
 import AddFile from "@/components/AddFile.js";
-import {Button} from "@/components/ui/button.js";
+import {Route, Routes} from "react-router";
 
 const Home = () => {
   const [init, setInit] = useState(true);
-  const [addFile, setAddFile] = useState(false);
 
   const mount = async () => {
     await helpers.api.init();
@@ -29,21 +28,24 @@ const Home = () => {
     )
   }
 
-  if (addFile) {
-    return (
-      <AddFile
-        setAddFile={setAddFile}
-      />
-    )
-  }
-
   return (
     <div
       className=""
     >
-      <AllFiles
-        addNewFile={() => setAddFile(true)}
-      />
+      <Routes>
+        <Route
+          path="/add"
+          element={
+            <AddFile />
+          }
+        />
+        <Route
+          path="*"
+          element={
+            <AllFiles />
+          }
+        />
+      </Routes>
     </div>
   )
 };

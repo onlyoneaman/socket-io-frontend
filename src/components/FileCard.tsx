@@ -20,6 +20,9 @@ const FileCard = ({file}: { file: DocFile }) => {
         >
           {status ? "Done" : "In Progress"}
         </p>
+        <span className="text-sm opacity-85">
+          {file.created_at}
+        </span>
       </CardContent>
     </Card>
   );
