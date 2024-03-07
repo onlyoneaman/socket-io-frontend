@@ -1,5 +1,6 @@
 import services from "../services/index.ts";
 import {useState} from "react";
+import {Button} from "@/components/ui/button.js";
 
 const AddFile = () => {
   const [name, setName] = useState<string>("");
@@ -21,9 +22,11 @@ const AddFile = () => {
         value={name}
         onChange={(e) => setName(e.target.value)}
       />
-      <button onClick={submit}>
+      <Button
+        onClick={submit}
+      >
         Add File
-      </button>
+      </Button>
     </div>
   )
 };
