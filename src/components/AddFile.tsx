@@ -9,12 +9,13 @@ const AddFile = () => {
   const navigate = useNavigate();
 
   const submit = async (e: React.FormEvent) => {
+    if(!name) return;
     e.preventDefault();
     const data = {
       name
     };
-    await services.fileApis.addFile(data);
-    navigate("/");
+    const res = await services.fileApis.addFile(data);
+    navigate("/file/" + res.data.id);
   }
 
   return (
