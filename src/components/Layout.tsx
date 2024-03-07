@@ -8,7 +8,7 @@ const Layout = ({children}) => {
       className="min-h-screen flex flex-col justify-between bg-gray-100"
     >
       <Header/>
-      <div className="grow">
+      <div className="grow p-3 md:p-6">
         {children}
       </div>
       <Footer/>

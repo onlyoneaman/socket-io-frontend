@@ -1,8 +1,13 @@
 import services from "../services/index.ts";
 import {useState} from "react";
 import {Button} from "@/components/ui/button.js";
+import {Input} from "@/components/ui/input.js";
 
-const AddFile = () => {
+const AddFile = (
+  {
+    setAddFile
+  }: any
+) => {
   const [name, setName] = useState<string>("");
 
   const submit = async (e: React.FormEvent) => {
@@ -11,22 +16,31 @@ const AddFile = () => {
       name
     };
     await services.fileApis.addFile(data);
+    setAddFile(false);
   }
 
   return (
     <div>
-      <input
-        name={"name"}
-        placeholder="File Name"
-        type={"text"}
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-      />
       <Button
-        onClick={submit}
+        onClick={() => setAddFile(false)}
       >
-        Add File
+        Back
       </Button>
+      <div className="py-6 space-y-3">
+        <Input
+          name={"name"}
+          placeholder="File Name"
+          type={"text"}
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          onKeyPress={(e) => e.key === 'Enter' && submit(e)}
+        />
+        <Button
+          onClick={submit}
+        >
+          Add File
+        </Button>
+      </div>
     </div>
   )
 };
