@@ -14,7 +14,13 @@ const fileApis = {
       data: params,
       headers: headers
     })
-  }
+  },
+  getSingleFile: async (id: string, headers: any = {}) => {
+    return helpers.api.get({
+      url: `/files/${id}`,
+      headers: headers
+    })
+  },
 }
 
 export default fileApis

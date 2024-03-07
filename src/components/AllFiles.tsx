@@ -21,9 +21,6 @@ const AllFiles = () => {
 
   return (
     <div>
-      {
-        files.length === 0 && <p>No files found</p>
-      }
       <div
         className="text-center grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4"
       >
@@ -35,6 +32,9 @@ const AllFiles = () => {
             <h2>Add new file</h2>
           </CardHeader>
         </Card>
+        {
+          files.length === 0 && <p>No files found</p>
+        }
         {
           files.map((file) => {
             return (

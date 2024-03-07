@@ -1,3 +1,5 @@
+import {Link} from "react-router-dom";
+
 const Header = () => {
 
   return (
@@ -12,11 +14,13 @@ const Header = () => {
             className="flex justify-center items-center py-4"
           >
             <div>
-              <h1
-                className=" font-bold"
-              >
-                Explore
-              </h1>
+              <Link to={"/"}>
+                <h1
+                  className=" font-bold"
+                >
+                  Home
+                </h1>
+              </Link>
             </div>
           </div>
         </div>

@@ -3,6 +3,7 @@ import {useEffect, useState} from "react";
 import {helpers} from "../helpers/index.js";
 import AddFile from "@/components/AddFile.js";
 import {Route, Routes} from "react-router";
+import FileComponent from "@/components/FileComponent.js";
 
 const Home = () => {
   const [init, setInit] = useState(true);
@@ -38,6 +39,12 @@ const Home = () => {
           element={
             <AddFile />
           }
+        />
+        <Route
+          path="/file/:id"
+            element={
+                <FileComponent />
+            }
         />
         <Route
           path="*"

@@ -1,13 +1,20 @@
 import {DocFile} from '../types/index.ts';
 import {Card, CardContent, CardHeader} from "@/components/ui/card.tsx";
+import {useNavigate} from "react-router-dom";
 
 const FileCard = ({file}: { file: DocFile }) => {
+  const navigate = useNavigate()
+
+  const openFile = () => {
+    navigate(`/file/${file.id}`)
+  }
 
   const {name, status} = file;
 
   return (
     <Card
       className="cursor-pointer hover:scale-105"
+      onClick={openFile}
     >
       <CardHeader>
         <h3>
