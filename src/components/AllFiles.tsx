@@ -1,8 +1,14 @@
 import {useEffect, useState} from "react";
 import {DocFile} from "../types/index.js";
 import services from "../services/index.js";
+import FileCard from "@/components/FileCard.js";
+import {Card, CardContent, CardHeader} from "@/components/ui/card.js";
 
-const AllFiles = () => {
+const AllFiles = (
+  {
+    addNewFile,
+  }: any
+) => {
   const [files, setFiles] = useState<DocFile[]>([]);
 
   const getFiles = async () => {
@@ -17,20 +23,28 @@ const AllFiles = () => {
 
   return (
     <div>
-      <h1>All Files</h1>
       {
         files.length === 0 && <p>No files found</p>
       }
-      {
-        files.map((file) => {
-          return (
-            <div key={file.id}>
-              <h2>{file.name}</h2>
-              <p>{file.status}</p>
-            </div>
-          )
-        })
-      }
+      <div
+        className="text-center grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4"
+      >
+        <Card
+          className="cursor-pointer"
+          onClick={addNewFile}
+        >
+          <CardHeader>
+            <h2>Add new file</h2>
+          </CardHeader>
+        </Card>
+        {
+          files.map((file) => {
+            return (
+              <FileCard file={file} key={file.id}/>
+            )
+          })
+        }
+      </div>
     </div>
   )
 };

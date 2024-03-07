@@ -41,12 +41,9 @@ const Home = () => {
     <div
       className=""
     >
-      <Button
-        onClick={() => setAddFile(true)}
-      >
-        Add File
-      </Button>
-      <AllFiles/>
+      <AllFiles
+        addNewFile={() => setAddFile(true)}
+      />
     </div>
   )
 };
