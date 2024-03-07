@@ -96,7 +96,9 @@ const FileComponent = () => {
       <p>
         {file?.name}
       </p>
-      <p>
+      <p
+        className={file?.status ? "text-green-500" : "text-red-500"}
+      >
         {file?.status ? "Done" : "Pending"}
       </p>
       <p>
@@ -111,7 +113,9 @@ const FileComponent = () => {
             <p>
               {field.name}
             </p>
-            <p>
+            <p
+                className={field.status ? "text-green-500" : "text-red-500"}
+            >
               {field.status ? "Done" : "Pending"}
             </p>
           </div>
