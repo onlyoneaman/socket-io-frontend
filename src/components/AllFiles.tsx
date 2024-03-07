@@ -12,7 +12,10 @@ const AllFiles = () => {
   const getFiles = async () => {
     const data = {};
     const res = await services.fileApis.getAllFiles(data);
-    setFiles(res.data);
+    let newFiles = res.data;
+    if(newFiles.length > 0) {
+      setFiles(newFiles);
+    }
   }
 
   useEffect(() => {

@@ -2,6 +2,8 @@ import {useEffect, useState} from "react";
 import {useParams} from "react-router";
 import services from "@/services/index.js";
 import {DocFile} from "@/types/index.js";
+import io from 'socket.io-client';
+import {config} from "@/config/index.js";
 
 const FileComponent = () => {
   const {id} = useParams();
@@ -29,7 +31,45 @@ const FileComponent = () => {
   }
 
   useEffect(() => {
+    // Connect to the WebSocket server
+    const socket = io(config.backend.baseURL);
+    console.log("socket", config.backend.baseURL);
+
     mount();
+
+    socket.emit('startFieldProcessing', id);
+
+    // Listen for field updates
+    socket.on('fieldUpdated', ({fileId, fieldId}) => {
+      console.log("fieldUpdated", fileId, fieldId)
+      if (fileId === id) {
+        setFile((prevFile) => {
+          if (!prevFile) return prevFile;
+          const updatedFields = prevFile.fields.map((field) =>
+            field.id === fieldId ? {...field, status: true} : field
+          );
+          return {...prevFile, fields: updatedFields};
+        });
+      }
+    });
+
+    // Listen for file updates
+    socket.on('fileUpdated', (updatedFile) => {
+      console.log("fileUpdated", updatedFile)
+      if (updatedFile.id === id) {
+        setFile((prevState) => {
+          return {
+            ...prevState,
+            ...updatedFile
+          }
+        })
+      }
+    });
+
+    return () => {
+      console.log("disconnecting socket");
+      socket.disconnect();
+    };
   }, []);
 
   if (load) {
